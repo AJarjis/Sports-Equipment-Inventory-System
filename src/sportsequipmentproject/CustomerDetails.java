@@ -7,6 +7,7 @@ package sportsequipmentproject;
  * the percentage discount given to the customer by the company.
  * 
  * @author Geoff McKeown
+ * @author Ali Jarjis
  */
 public abstract class CustomerDetails {
     protected String customerID;    
@@ -32,10 +33,11 @@ public abstract class CustomerDetails {
      * Creates a new instance of CustomerDetails
      * @param customerID        unique customer ID
      * @param customerAddress   customer's address
-     * @param customerRegion    regional code 
+     * @throws IllegalCustomerIDException   if the customerID String does 
+     *                                  not have the required format
      */
     public CustomerDetails(String customerID, Address customerAddress) 
-                                              throws IllegalCustomerIDexception{
+                                              throws IllegalCustomerIDException{
         if ( isValidCustomerID(customerID) ){
             this.customerID = customerID;
             this.fullAddress = customerAddress;
@@ -43,8 +45,8 @@ public abstract class CustomerDetails {
             this.totalValueOfOrders = 0;
         }
         else
-            throw new IllegalCustomerIDexception
-                                        ("Given string has incorrect format.");        
+            throw new IllegalCustomerIDException
+                                        ("Given ID string has incorrect format.");        
     }
     
   /**
@@ -96,9 +98,9 @@ public abstract class CustomerDetails {
    
     @Override
     public String toString(){
-        StringBuilder str = new StringBuilder("\n\tCustomer ID:\t");
-        str.append(customerID).append("\n\tCustomer address:\t");
-        str.append(fullAddress).append("\n\tRegion:\t");
+        StringBuilder str = new StringBuilder("\nCustomer ID: ");
+        str.append(customerID).append("\nCustomer address: ");
+        str.append(fullAddress).append("\nRegion: ");
         str.append(regionalCode).append("\n");
         return str.toString();
     }
@@ -136,4 +138,6 @@ public abstract class CustomerDetails {
                 || (first.matches("[G,g]") && second.matches("[L,l]"))
                 || (first.matches("[M,m]") && second.matches("[I,i]"));     
      }
+    
+    
 }

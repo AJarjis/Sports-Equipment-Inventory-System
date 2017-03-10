@@ -6,6 +6,7 @@ import java.text.NumberFormat;
  * A class to model a private individual customer of a sports equipment
  * company
  * @author Geoff McKeown
+ * @author Ali Jarjis
  */
 public class PrivateCustomerDetails extends CustomerDetails{
     
@@ -25,22 +26,22 @@ public class PrivateCustomerDetails extends CustomerDetails{
      /**
      * Creates a new instance of PrivateCustomerDetails
      * @param customerID        unique customer ID
-     * @param customerAddress   customer's address
-     * @param customerRegion    regional code 
+     * @param customerAddress   customer's address 
      * @param customerName      private customer's name
      * 
-     * @throws IllegalCustomerIDexception   if the customerID String does 
+     * @throws IllegalCustomerIDException   if the customerID String does 
      *                                  not have the required format
      */
     public PrivateCustomerDetails 
                  (String customerID, Address customerAddress, Name customerName) 
-                                              throws IllegalCustomerIDexception{
+                                              throws IllegalCustomerIDException{
         super(customerID, customerAddress);
-        if ( customerID.charAt(0) != 'P')
-            throw new IllegalCustomerIDexception("Customer ID must begin with 'P'"
+        if ( customerID.charAt(0) != 'P') {
+            throw new IllegalCustomerIDException("Customer ID must begin with 'P'"
                     + " for a private individual customer");
-        else
-            fullName = customerName;
+        } else {
+            this.fullName = customerName;
+        }
     }
     
     /**
@@ -51,17 +52,24 @@ public class PrivateCustomerDetails extends CustomerDetails{
         return fullName;
     }         
     
+    /**
+     * Finds how much of a discount the customer is entitled to depending on the
+     * total value of their previous orders.
+     *
+     * @return discount customer is entitled to between 0% and 15%
+     */
     @Override
     public int getDiscount(){
-        if ( totalValueOfOrders >= TOTAL_FOR_MAX_DISCOUNT )
+        if ( totalValueOfOrders >= TOTAL_FOR_MAX_DISCOUNT ) {
             return MAX_DISCOUNT;
-        else if (totalValueOfOrders > 0){
+        } else if (totalValueOfOrders > 0){
             double proportionalDiscount = 
                     totalValueOfOrders * MAX_DISCOUNT / TOTAL_FOR_MAX_DISCOUNT;
             return (int) proportionalDiscount;
         }
-        else
+        else {
             return 0;
+        }
     }
     
     @Override
@@ -69,7 +77,7 @@ public class PrivateCustomerDetails extends CustomerDetails{
         NumberFormat fmt = NumberFormat.getPercentInstance();
         
         StringBuilder str = new StringBuilder(super.toString());
-        str.append(fullName).append("\n\tCurrent discount: ").append(getDiscount());
+        str.append(fullName).append("\nCurrent Discount: ").append(getDiscount());
         return str.toString();
     }
 }

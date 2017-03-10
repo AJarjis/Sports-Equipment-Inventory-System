@@ -33,8 +33,7 @@ public class Name {
     }
     
     /**
-     * Sets customer's title
-     * @param title customer's title
+     * @param title customer's new title
      */
     public void setTitle(String title) {
         this.title = title;
@@ -48,8 +47,7 @@ public class Name {
     }
     
     /**
-     * Sets customer's initials
-     * @param initials customer's initials
+     * @param initials customer's new initials
      */
     public void setInitials(String initials) {
         this.initials = initials;
@@ -63,8 +61,7 @@ public class Name {
     }
 
     /**
-     * Sets customer's last name
-     * @param lastName customer's last name
+     * @param lastName customer's new last name
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
@@ -73,9 +70,9 @@ public class Name {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder("\nName: ");
-        str.append(title).append(" ");;
+        str.append(title).append(" ");
         str.append(initials).append(". ");
-        str.append(lastName).append("\n");
+        str.append(lastName);
         return str.toString();
     }
     

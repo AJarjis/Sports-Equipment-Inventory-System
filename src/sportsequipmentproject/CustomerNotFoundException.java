@@ -11,4 +11,12 @@ public class CustomerNotFoundException extends Exception{
     public CustomerNotFoundException() {
         super("Given ID does not correspond to any customer.");
     }
+    
+    /**
+     * Creates a CustomerNotFoundException with a given message 
+     * @param message   message to override default message
+     */
+    public CustomerNotFoundException(String message) {
+        super(message);
+    }
 }

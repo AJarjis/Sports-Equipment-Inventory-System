@@ -33,8 +33,7 @@ public class Address {
     }
 
     /**
-     * Set the customer's street and/or house number
-     * @param addressLine   customer's street and/or house number
+     * @param addressLine   customer's new street and/or house number
      */
     public void setAddressLine(String addressLine) {
         this.addressLine = addressLine;
@@ -48,8 +47,7 @@ public class Address {
     }
 
     /**
-     * Sets the customer's city
-     * @param city  customer's city
+     * @param city  customer's new city
      */
     public void setCity(String city) {
         this.city = city;
@@ -63,8 +61,7 @@ public class Address {
     }
 
     /**
-     * Sets customer's postcode
-     * @param postcode customer's postcode
+     * @param postcode customer's new postcode
      */
     public void setPostcode(String postcode) {
         this.postcode = postcode;
@@ -73,9 +70,9 @@ public class Address {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder("\nAddress:\n");
-        str.append(addressLine).append(",\n");;
+        str.append(addressLine).append(",\n");
         str.append(city).append(",\n");
-        str.append(postcode).append("\n");
+        str.append(postcode);
         return str.toString();
     }
     
