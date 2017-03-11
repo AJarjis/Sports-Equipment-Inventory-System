@@ -1,6 +1,7 @@
 package sportsequipmentproject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A class to model a collection of CustomerDetails objects.
@@ -18,11 +19,12 @@ public class CustomerDetailsList {
     }
     
     /**
-     * Adds a customer details to array
+     * Adds a customer details to arrayList and then sorts
      * @param newCustomer   customer details to add
      */
     public void addCustomer(CustomerDetails newCustomer) {
         customers.add(newCustomer);
+        sortCustomers();
     }
     
     /**
@@ -31,4 +33,49 @@ public class CustomerDetailsList {
     public int numberOfCustomers() {
         return customers.size();
     }
+    
+    /**
+     * Sorts arrayList by customer ID in ascending order
+     * Allows for easier searching
+     */
+    public void sortCustomers() {
+        Collections.sort(customers);
+    }
+    
+    /**
+     * Searches customers ArrayList for customer's details
+     * @param givenID   the ID of a customer
+     * @return          the customer's details if found else
+     * @throws CustomerNotFoundException
+     */
+    public CustomerDetails findCustomer(String givenID) 
+            throws CustomerNotFoundException
+    {
+        int min = 0;
+        int max = numberOfCustomers() - 1;
+        
+        // Performs a binary search to find the customer's details
+        while (min <= max) {
+            int mid = (min + max)/2;
+            // Compares given ID with the ID in the middle of list
+            int compareResult = ((customers.get(mid)).getCustomerID())
+                                .compareTo(givenID);
+            
+            if (compareResult == 0) {
+                return customers.get(mid);
+            } else if (compareResult < 0) {
+                min = mid + 1;
+            } else {
+                max = mid - 1;
+            }
+        }
+        throw new CustomerNotFoundException();
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerDetailsList{" + "customers = " + customers + '}';
+    }
+    
+    
 }

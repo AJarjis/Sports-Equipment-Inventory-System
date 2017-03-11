@@ -65,7 +65,8 @@ public class SportsClubDetails extends CustomerDetails {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder(super.toString());
-        str.append(clubName).append("\nCurrent Discount: ").append(discount);
+        str.append(clubName).append("\nCurrent Discount: ");
+        str.append(discount).append("\n");
         return str.toString();
     }
     

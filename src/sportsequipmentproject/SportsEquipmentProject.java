@@ -77,11 +77,11 @@ public class SportsEquipmentProject {
         /* SportsClubDetails Test Methods
         Address testClubAddress = new Address
                                     ("1, Yeatman Road", "Norwich", "NR2 5PL");
-        String testID = "CSC-1235"; //Change value to test exception
+        String testID2 = "CSC-1235"; //Change value to test exception
         String testClubName = "Fit Gym";
         try {
             SportsClubDetails testClubDetails = new SportsClubDetails
-                                    (20, "Fit Gym", testID, testClubAddress);
+                                    (20, "Fit Gym", testID2, testClubAddress);
             System.out.println(testClubDetails.getClubName());
             System.out.println(testClubDetails.getDiscount());
             System.out.println(testClubDetails);
@@ -92,5 +92,46 @@ public class SportsEquipmentProject {
             System.out.println(error);
         }
         */  
+        
+        Name pCustomer1 = new Name("Ms", "D", "Smith");
+        Name pCustomer2 = new Name("Mr", "FR", "James");
+        Name pCustomer3 = new Name("Miss", "GT", "Clooney");
+        Name pCustomer4 = new Name("Dr", "NM", "Pitt");
+        Address pAddress1 = new Address("2 Bluebell Road", "Glasgow", "E1 4PX");
+        Address pAddress2 = new Address("6 Bluebell Road", "Glasgow", "E1 4PX");
+        Address pAddress3 = new Address("7 Bluebell Road", "Glasgow", "E1 4PX");
+        Address pAddress4 = new Address("9 Bluebell Road", "Glasgow", "E1 4PX");
+        String testID1 = "PSC-1655";
+        String testID2 = "PNW-9007";
+        String testID3 = "PSW-8735";
+        String testID4 = "PMI-6238";
+        try {
+            PrivateCustomerDetails pCustomerDetails1 = new PrivateCustomerDetails
+                                                (testID1, pAddress1, pCustomer1);
+            PrivateCustomerDetails pCustomerDetails2 = new PrivateCustomerDetails
+                                                (testID2, pAddress2, pCustomer2);
+            PrivateCustomerDetails pCustomerDetails3 = new PrivateCustomerDetails
+                                                (testID3, pAddress3, pCustomer3);
+            PrivateCustomerDetails pCustomerDetails4 = new PrivateCustomerDetails
+                                                (testID4, pAddress4, pCustomer4);
+            CustomerDetailsList listOfCustomers = new CustomerDetailsList();
+            listOfCustomers.addCustomer(pCustomerDetails1);
+            listOfCustomers.addCustomer(pCustomerDetails2);
+            listOfCustomers.addCustomer(pCustomerDetails3);
+            listOfCustomers.addCustomer(pCustomerDetails4);
+            System.out.println(listOfCustomers.findCustomer("CWWWWWW"));
+            //System.out.println(listOfCustomers);
+        } catch (IllegalCustomerIDException ex) {
+            System.out.println(ex);
+        } catch (CustomerNotFoundException ex) {
+            System.out.println(ex);
+        }
+        
+        try {
+            Product testProduct = new Product("Ah/123", 12.342);
+            System.out.println(testProduct);
+        } catch(InvalidProductCodeException error) {
+            System.out.println(error);
+        }
     }
 }

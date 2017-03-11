@@ -9,7 +9,7 @@ package sportsequipmentproject;
  * @author Geoff McKeown
  * @author Ali Jarjis
  */
-public abstract class CustomerDetails {
+public abstract class CustomerDetails implements Comparable<CustomerDetails> {
     protected String customerID;    
                 // 3 letters, followed by a hyphen, followed by 4 digits. The 
                 // first of the 3 letters is a code for the type of customer:
@@ -101,7 +101,7 @@ public abstract class CustomerDetails {
         StringBuilder str = new StringBuilder("\nCustomer ID: ");
         str.append(customerID).append("\nCustomer address: ");
         str.append(fullAddress).append("\nRegion: ");
-        str.append(regionalCode).append("\n");
+        str.append(regionalCode);
         return str.toString();
     }
    
@@ -138,6 +138,18 @@ public abstract class CustomerDetails {
                 || (first.matches("[G,g]") && second.matches("[L,l]"))
                 || (first.matches("[M,m]") && second.matches("[I,i]"));     
      }
+
+    /**
+     * Compares the ID's of two CustomerDetails objects.. 
+     * @param otherCustomer     customer to compare with
+     * @return                  0 if equal,
+     *                          negative if lexicographically less,
+     *                          positive if lexicographically more
+     */
+    @Override
+    public int compareTo(CustomerDetails otherCustomer){
+        return this.customerID.compareTo(otherCustomer.getCustomerID());
+    }
     
     
 }

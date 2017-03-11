@@ -77,7 +77,8 @@ public class PrivateCustomerDetails extends CustomerDetails{
         NumberFormat fmt = NumberFormat.getPercentInstance();
         
         StringBuilder str = new StringBuilder(super.toString());
-        str.append(fullName).append("\nCurrent Discount: ").append(getDiscount());
+        str.append(fullName).append("\nCurrent Discount: ");
+        str.append(getDiscount()).append("\n");
         return str.toString();
     }
 }
