@@ -5,10 +5,8 @@ package sportsequipmentproject;
  * @author Ali Jarjis
  */
 public class SportsClubDetails extends CustomerDetails {
-    private int discount;
-                // Stores agreed discount rate.
-    private String clubName;
-                // Stores name of club
+    private int discount; // Stores agreed discount rate.
+    private String clubName; // Stores name of club
 
     /**
      * Creates a new instance of SportsClubDetails
@@ -64,9 +62,10 @@ public class SportsClubDetails extends CustomerDetails {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder(super.toString());
+        StringBuilder str = new StringBuilder();
         str.append(clubName).append("\nCurrent Discount: ");
-        str.append(discount).append("\n");
+        str.append(discount).append("%");
+        str.append(super.toString());
         return str.toString();
     }
     

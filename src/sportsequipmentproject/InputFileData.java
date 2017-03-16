@@ -2,7 +2,7 @@ package sportsequipmentproject;
 
 /**
  *
- * @author Ali
+ * @author Ali Jarjis
  */
 public class InputFileData {
 

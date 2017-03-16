@@ -6,12 +6,9 @@ package sportsequipmentproject;
  * @author Ali Jarjis
  */
 public class Name {
-    private String title;
-            // Stores private customer's title.
-    private String initials;
-            // Stores private customer's initials.
-    private String lastName;
-            // Stores private customer's last name.
+    private String title; // Stores private customer's title.
+    private String initials; // Stores private customer's initials.
+    private String lastName; // Stores private customer's last name.
     
     /**
      * Creates a new instance of Name

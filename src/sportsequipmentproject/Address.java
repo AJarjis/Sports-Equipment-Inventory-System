@@ -6,12 +6,9 @@ package sportsequipmentproject;
  * @author Ali Jarjis
  */
 public class Address {
-    private String addressLine;
-            // Stores customer's street and/or house number
-    private String city;
-            // Stores customer's city.
-    private String postcode;
-            // Stores customer's postcode.
+    private String addressLine; // Stores customer's street and/or house number
+    private String city; // Stores customer's city.
+    private String postcode; // Stores customer's postcode.
 
     /**
      * Creates a new instance of Address

@@ -9,20 +9,25 @@ package sportsequipmentproject;
  * month, are active.
  * 
  * @author Geoff McKeown
+ * @author Ali Jarjis
  */
 public class SportsEquipmentSupplier {
     
-    private Product [] productRange;
-    
-    private CustomerDetailsList customerRecords;
+    private Product [] productRange; // Stores company's range of products
+            
+    private CustomerDetailsList customerRecords;    
+                                    // Stores customer details for all customers
     private PurchaseOrderList [] purchaseOrderRecords;
+                                    // Stores purchase orders for past 12 months
                                     // purchase order records are stored by month
     
-    private int currentMonth;       // from 1 .. 12
-    private int currentYear;        
+    private int currentMonth;       // Stores current month from 1 .. 12
+    private int currentYear;        // Stores current year
+    
     
     /**
      * Creates a new instance of SportsEquipmentSupplier
+     * @param productList   company's range of products
      * @param month         index of the current month (1 .. 12)
      * @param year          the current year
      */
@@ -46,16 +51,14 @@ public class SportsEquipmentSupplier {
         customerRecords.addCustomer(customer);
     }
     
-    
-    
     /**
      * Generates a new purchase order record for the current month 
      * and updates record of purchasing customer
-     * @param date          a String with format "dd/mm/yy"
-     * @param customerID    must be the ID of a customer in the the company's
-     *                      customer records
-     * @param p             must be in the company's current product range
-     * @param qty           the number of items required of the product
+     * @param dateStr          a String with format "dd/mm/yy"
+     * @param customerID       must be the ID of a customer in the the company's
+     *                         customer records
+     * @param productCode      must be in the company's current product range
+     * @param qty              the number of items required of the product
      * @throws IncorrectPurchaseOrderException 
      */
     public void addNewPurchaseOrder
@@ -88,8 +91,12 @@ public class SportsEquipmentSupplier {
             customer.resetTotalValueOfOrders(newTotalAmountOrdered);                     
             } 
         }
-        catch(Exception e){
-            System.out.println(e);
+        catch(IllegalDateFormatException error){
+            System.out.println(error);
+        } catch (IncorrectPurchaseOrderException error) {
+            System.out.println(error);
+        } catch (CustomerNotFoundException error) {
+            System.out.println(error);
         }
     }
     
@@ -172,19 +179,23 @@ public class SportsEquipmentSupplier {
     /**
      * @param month     must be in range 1 .. 12
      * @return          list of purchase orders for the specified month
-     * @throws InvalidMonthException 
+     * @throws InvalidMonthException    if not in range 1 .. 12
      */
     public PurchaseOrderList getPurchaseOrdersForGivenMonth(int month) 
                                                    throws InvalidMonthException{
         if (month < 1 || month > 12)
-            throw new InvalidMonthException("Must have 1 <= month <=12");
+            throw new InvalidMonthException("Must have 1 <= month <= 12");
         else
             return purchaseOrderRecords[month];
     }
     
-    // Search for a given type of product  in the company's current range of 
-    // products. If found return the index of the product in productRange.
-    // Otherwise return -1
+    /**
+     * Search for a given type of product in the company's current range of 
+     * products
+     * @param productCode   product code to search for
+     * @return              the index of the product in productRange,
+     *                      otherwise return -1
+     */
     private int FindProductInProductRange(String productCode){
         
         int n = productRange.length;
@@ -201,5 +212,17 @@ public class SportsEquipmentSupplier {
         else
             return -1;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder("Sports Equipment Supplier: ");
+        str.append("/nProduct Range:/n").append(productRange);
+        str.append(customerRecords).append(purchaseOrderRecords);
+        str.append("Current Month: ").append(currentMonth);
+        str.append("Current Year: ").append(currentYear);
+        return str.toString();
+    }
+    
+    
 }
 

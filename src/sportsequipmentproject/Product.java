@@ -55,7 +55,7 @@ public class Product {
     /**
      * @return price
      */
-    public double getPrice() {
+    public double getUnitPrice() {
         return price;
     }
 
@@ -63,7 +63,7 @@ public class Product {
      * Set price rounded to nearest penny
      * @param price given price per unit
      */
-    public void setPrice(double price) {
+    public void setUnitPrice(double price) {
         this.price = roundTo(price);
     }
     

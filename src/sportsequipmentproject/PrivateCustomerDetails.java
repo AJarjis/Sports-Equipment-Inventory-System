@@ -17,10 +17,9 @@ public class PrivateCustomerDetails extends CustomerDetails{
                      
     
     private static final int MAX_DISCOUNT = 15;
-                                // maximum percentage discount
+                            // maximum percentage discount
     
-    // Fields specific to this type of customer
-    private Name fullName;
+    private Name fullName;  // Stores customer's full name
     
     
      /**
@@ -51,6 +50,14 @@ public class PrivateCustomerDetails extends CustomerDetails{
     public Name getCustomerName(){
         return fullName;
     }         
+
+    /**
+     * 
+     * @param fullName customer's new full name
+     */
+    public void setFullName(Name fullName) {
+        this.fullName = fullName;
+    }
     
     /**
      * Finds how much of a discount the customer is entitled to depending on the
@@ -76,9 +83,10 @@ public class PrivateCustomerDetails extends CustomerDetails{
     public String toString(){
         NumberFormat fmt = NumberFormat.getPercentInstance();
         
-        StringBuilder str = new StringBuilder(super.toString());
+        StringBuilder str = new StringBuilder();
         str.append(fullName).append("\nCurrent Discount: ");
-        str.append(getDiscount()).append("\n");
+        str.append(getDiscount()).append("%");
+        str.append(super.toString());
         return str.toString();
     }
 }

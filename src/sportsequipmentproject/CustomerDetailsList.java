@@ -3,7 +3,7 @@ package sportsequipmentproject;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
+/** 
  * A class to model a collection of CustomerDetails objects.
  * @author Ali Jarjis
  */
@@ -51,8 +51,8 @@ public class CustomerDetailsList {
     public CustomerDetails findCustomer(String givenID) 
             throws CustomerNotFoundException
     {
-        int min = 0;
-        int max = numberOfCustomers() - 1;
+        int min = 0;    // Beginning of array
+        int max = numberOfCustomers() - 1; // End of array
         
         // Performs a binary search to find the customer's details
         while (min <= max) {
@@ -74,7 +74,9 @@ public class CustomerDetailsList {
 
     @Override
     public String toString() {
-        return "CustomerDetailsList{" + "customers = " + customers + '}';
+        StringBuilder str = new StringBuilder("Customers: ");
+        str.append(customers);
+        return str.toString();
     }
     
     

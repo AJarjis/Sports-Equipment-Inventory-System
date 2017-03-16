@@ -6,7 +6,7 @@ package sportsequipmentproject;
  * @author Ali Jarjis
  */
 public class OrderDate {
-    private String date;
+    private String date; //Stores date in format dd/mm/yy
 
     /**
      * Creates an instance of OrderDate
@@ -17,8 +17,7 @@ public class OrderDate {
         if (isValidDate(date)) {
             this.date = date;
         } else {
-            throw new IllegalDateFormatException
-                                    ("Date provided is in incorrect format.");
+            throw new IllegalDateFormatException();
         }
     }
 
@@ -27,6 +26,13 @@ public class OrderDate {
      */
     public String getDate() {
         return date;
+    }
+    
+    /**
+     * @return the month from date string
+     */
+    public int getMonth() {
+        return Integer.parseInt(date.substring(4, 5));
     }
 
     /**
@@ -38,8 +44,7 @@ public class OrderDate {
         if (isValidDate(date)) {
             this.date = date;
         } else {
-            throw new IllegalDateFormatException
-                                    ("Date provided is in incorrect format.");
+            throw new IllegalDateFormatException();
         }
     }
     
@@ -54,7 +59,7 @@ public class OrderDate {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder("\nDate: ");
+        StringBuilder str = new StringBuilder("\nDate Ordered: ");
         str.append(date);
         return str.toString();
     }

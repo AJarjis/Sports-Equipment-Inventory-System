@@ -1,6 +1,5 @@
 package sportsequipmentproject;
 
-
 /**
  * A class to model a customer of a sports equipment company.
  * The class is abstract because it contains an abstract method to get
@@ -25,9 +24,9 @@ public abstract class CustomerDetails implements Comparable<CustomerDetails> {
                 // SE("South East"), SW("South West"), GL("Greater London")
     
     protected double totalValueOfOrders;    
-                    // Total value of all previous orders during the last 12  
-                    // months, including the current month. This total does not
-                    // include the value of orders placed more than a year ago.
+                // Total value of all previous orders during the last 12  
+                // months, including the current month. This total does not
+                // include the value of orders placed more than a year ago.
                                                
     /**
      * Creates a new instance of CustomerDetails
@@ -38,15 +37,14 @@ public abstract class CustomerDetails implements Comparable<CustomerDetails> {
      */
     public CustomerDetails(String customerID, Address customerAddress) 
                                               throws IllegalCustomerIDException{
-        if ( isValidCustomerID(customerID) ){
+        if ( isValidCustomerID(customerID) ) {
             this.customerID = customerID;
             this.fullAddress = customerAddress;
             this.regionalCode = customerID.substring(1,3);
             this.totalValueOfOrders = 0;
+        } else {
+            throw new IllegalCustomerIDException();  
         }
-        else
-            throw new IllegalCustomerIDException
-                                        ("Given ID string has incorrect format.");        
     }
     
   /**
@@ -79,6 +77,27 @@ public abstract class CustomerDetails implements Comparable<CustomerDetails> {
     public double getTotalValueOfOrders(){
         return totalValueOfOrders;
     }
+
+    /**
+     * Sets customer ID to new valid customer ID
+     * @param customerID    new customer ID in correct format else
+     * @throws IllegalCustomerIDException 
+     */
+    public void setCustomerID(String customerID) 
+                                            throws IllegalCustomerIDException{
+        if ( isValidCustomerID(customerID) ){
+            this.customerID = customerID;
+        } else {
+            throw new IllegalCustomerIDException();  
+        }
+    }
+
+    /**
+     * @param fullAddress   customer's new full address
+     */
+    public void setFullAddress(Address fullAddress) {
+        this.fullAddress = fullAddress;
+    }
     
     /**
      * Method to update the total value of orders placed by this customer during 
@@ -99,14 +118,20 @@ public abstract class CustomerDetails implements Comparable<CustomerDetails> {
     @Override
     public String toString(){
         StringBuilder str = new StringBuilder("\nCustomer ID: ");
-        str.append(customerID).append("\nCustomer address: ");
+        str.append(customerID);
         str.append(fullAddress).append("\nRegion: ");
-        str.append(regionalCode);
+        str.append(regionalCode).append("\n");
         return str.toString();
     }
    
-    // checks whether or not a given string has the correct format for a 
-    // customer ID string
+    
+    /**
+     * checks whether or not a given string has the correct format for a 
+     * customer ID string
+     * 
+     * @param str   possible customer ID
+     * @return  true or false depending if Customer ID is valid 
+     */
     private boolean isValidCustomerID(String str){
         if (str.length() != 8)
             return false;
@@ -127,8 +152,13 @@ public abstract class CustomerDetails implements Comparable<CustomerDetails> {
         }
     }
     
-    // method to determine whether or not a two character string is a valid
-    // regional code of the company
+    /**
+     * method to determine whether or not a two character string is a valid
+     * regional code of the company
+     * 
+     * @param regCode   possible regional code
+     * @return          true or false depending if regional code is valid 
+     */
     private boolean isValidCode(String regCode){
         String first = regCode.substring(0,1);
         String second = regCode.substring(1,2);
