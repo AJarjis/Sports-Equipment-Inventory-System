@@ -1,5 +1,7 @@
 package sportsequipmentproject;
 
+import java.util.Arrays;
+
 /**
  * A class to model the management of customer records and purchase orders for 
  * a sports equipment company. 
@@ -47,7 +49,7 @@ public class SportsEquipmentSupplier {
      * adds the details for a new customer to this supplier's records
      * @param customer 
      */
-    public void addNewCustomer( CustomerDetails customer  ){
+    public void addNewCustomer(CustomerDetails customer){
         customerRecords.addCustomer(customer);
     }
     
@@ -216,10 +218,15 @@ public class SportsEquipmentSupplier {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder("Sports Equipment Supplier: ");
-        str.append("/nProduct Range:/n").append(productRange);
+        str.append("\nProduct Range:");
+        
+        for (Product item: productRange) {
+            str.append(item + "\n");
+        }
+        
         str.append(customerRecords).append(purchaseOrderRecords);
-        str.append("Current Month: ").append(currentMonth);
-        str.append("Current Year: ").append(currentYear);
+        str.append("\nCurrent Month: ").append(currentMonth);
+        str.append("\nCurrent Year: ").append(currentYear);
         return str.toString();
     }
     

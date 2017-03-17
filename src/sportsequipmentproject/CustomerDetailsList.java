@@ -8,14 +8,14 @@ import java.util.Collections;
  * @author Ali Jarjis
  */
 public class CustomerDetailsList {
-    private ArrayList<CustomerDetails> customers;
+    private ArrayList<CustomerDetails> customersList;
                                     // Stores all customers: private and club
     
     /**
      * Creates a new empty instance of CustomerDetailsList
      */
     public CustomerDetailsList() {
-        customers = new ArrayList<CustomerDetails>();
+        customersList = new ArrayList<CustomerDetails>();
     }
     
     /**
@@ -23,7 +23,7 @@ public class CustomerDetailsList {
      * @param newCustomer   customer details to add
      */
     public void addCustomer(CustomerDetails newCustomer) {
-        customers.add(newCustomer);
+        customersList.add(newCustomer);
         sortCustomers();
     }
     
@@ -31,7 +31,7 @@ public class CustomerDetailsList {
      * @return size of customers arrayList
      */
     public int numberOfCustomers() {
-        return customers.size();
+        return customersList.size();
     }
     
     /**
@@ -39,7 +39,7 @@ public class CustomerDetailsList {
      * Allows for easier searching
      */
     public void sortCustomers() {
-        Collections.sort(customers);
+        Collections.sort(customersList);
     }
     
     /**
@@ -58,11 +58,11 @@ public class CustomerDetailsList {
         while (min <= max) {
             int mid = (min + max)/2;
             // Compares given ID with the ID in the middle of list
-            int compareResult = ((customers.get(mid)).getCustomerID())
+            int compareResult = ((customersList.get(mid)).getCustomerID())
                                 .compareTo(givenID);
             
             if (compareResult == 0) {
-                return customers.get(mid);
+                return customersList.get(mid);
             } else if (compareResult < 0) {
                 min = mid + 1;
             } else {
@@ -75,7 +75,11 @@ public class CustomerDetailsList {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder("Customers: ");
-        str.append(customers);
+        
+        for (CustomerDetails customer: customersList) {
+            str.append(customer).append("\n");
+        }
+        
         return str.toString();
     }
     
