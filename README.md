@@ -1,4 +1,4 @@
-# Inventory System
+# Sports Equipment Inventory System
 
 ## What it does?
 An inventory system devloped in Java that manages the inventory of a sports equipment company.
